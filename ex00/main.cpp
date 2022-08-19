@@ -3,19 +3,76 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcyprien <dcyprien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 17:27:28 by dcyprien          #+#    #+#             */
-/*   Updated: 2022/08/19 17:41:54 by dcyprien         ###   ########.fr       */
+/*   Updated: 2022/08/19 18:36:05 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Convert.hpp"
 
-int main(void){
-	float n = 0.0f;
-	Convert convert(n);
+int main(int ac, char **av)
+{
+	if (ac != 2)
+	{
+		std::cout << "Please enter exactly 1 argument" << std::endl;
+		return (0);
+	}
 
-	std::cout << convert.toChar() << std::endl;
-	return 1;
+	Convert	conv;
+	float	f;
+
+	if (conv.isChar(av[1]))
+		f = av[1][0];
+	else
+		f = std::atof(av[1]);
+
+	if (f == 0 && !conv.isNum(av[1]))
+	{
+		std::cout << "Impossible conversion" << std::endl;
+		return(0);
+	}
+
+	try
+	{
+		char c = conv.toChar(f);
+		std::cout << "char: " << c << std::endl; 
+	}
+	catch(const std::string& e)
+	{
+		std::cout << "char: " << e << std::endl;
+	}
+
+	try
+	{
+		int i = conv.toInt(f);
+		std::cout << "int: " << i << std::endl; 
+	}
+	catch(const std::string& e)
+	{
+		std::cout << "int: " << e << std::endl;
+	}
+	
+	try
+	{
+		f = conv.toFloat(f);
+		std::cout << std::fixed << std::setprecision(2) << "float: " << f << "f" << std::endl; 
+	}
+	catch(const std::string& e)
+	{
+		std::cout <<"float: " << e << std::endl;
+	}
+
+	try
+	{
+		double d = conv.toDouble(f);
+		std::cout << std::fixed << std::setprecision(1) << "double: " << d << std::endl; 
+	}
+	catch(const std::string& e)
+	{
+		std::cout << "double: " << e << '\n';
+	}
+
+	return (0);
 }

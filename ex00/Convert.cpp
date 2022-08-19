@@ -3,24 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   Convert.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcyprien <dcyprien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 15:31:12 by dcyprien          #+#    #+#             */
-/*   Updated: 2022/08/19 17:43:34 by dcyprien         ###   ########.fr       */
+/*   Updated: 2022/08/19 18:34:47 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Convert.hpp"
 
-Convert::Convert(void): _n(0.0f){
+Convert::Convert(void){
 	return ;
 }
 
-Convert::Convert(Convert const &src): _n(src.getFloat()){
-	return ;
-}
-
-Convert::Convert(float n): _n(n){
+Convert::Convert(Convert const &src){
+	static_cast<void>(src);
 	return ;
 }
 
@@ -29,24 +26,41 @@ Convert::~Convert(void){
 }
 
 Convert & Convert::operator=(Convert const &rhs){
-	this->_n = rhs._n;
+	static_cast<void>(rhs);
 	return *this;
 }
 
-float		Convert::getFloat(void)const{
-	return this->_n;
+bool	Convert::isNum(char *av)const{
+	std::string param = av;
+	return (param.find_first_not_of("0123456789"));
 }
 
-char	Convert::toChar()const{
-	if (this->isPrintable())
-		return static_cast<char>(this->_n);
-	return (0);
+bool	Convert::isChar(char *av)const{
+	std::string param = av;
+	return (param.size() == 1 && isalpha(param[0]));
 }
 
-int		Convert::toInt(void)const{
-	return static_cast<int>(n);
+float	Convert::toFloat(float f)const{
+	return static_cast<float>(f);
 }
 
-bool	Convert::isPrintable()const{
-	return (this->_n >= 32 && this->_n <= 126);
+double	Convert::toDouble(float f)const{
+	return static_cast<float>(f);
+}
+
+int		Convert::toInt(float f)const{
+	if (f == std::numeric_limits<float>::infinity() || f == -std::numeric_limits<float>::infinity() || std::isnan(f))
+		throw std::string ("impossible");
+	return static_cast<int>(f);
+}
+char	Convert::toChar(float f)const{
+	if (f == std::numeric_limits<float>::infinity() || f == -std::numeric_limits<float>::infinity() || std::isnan(f))
+		throw std::string ("impossible");
+	if (!this->isPrintable(f))
+		throw std::string ("Non Displayable");
+	return static_cast<char>(f);
+}
+
+bool	Convert::isPrintable(float f)const{
+	return (f >= 32 && f <= 126);
 }
