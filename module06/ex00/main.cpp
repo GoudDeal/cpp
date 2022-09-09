@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dcyprien <dcyprien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 17:27:28 by dcyprien          #+#    #+#             */
-/*   Updated: 2022/08/19 18:36:05 by user42           ###   ########.fr       */
+/*   Updated: 2022/08/21 08:33:49 by dcyprien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ int main(int ac, char **av)
 	}
 
 	Convert	conv;
-	float	f;
+	double	f;
 
 	if (conv.isChar(av[1]))
 		f = av[1][0];
 	else
-		f = std::atof(av[1]);
+		f = std::atol(av[1]);
 
 	if (f == 0 && !conv.isNum(av[1]))
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Convert.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dcyprien <dcyprien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 15:31:12 by dcyprien          #+#    #+#             */
-/*   Updated: 2022/08/19 18:34:47 by user42           ###   ########.fr       */
+/*   Updated: 2022/08/21 08:32:59 by dcyprien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ double	Convert::toDouble(float f)const{
 	return static_cast<float>(f);
 }
 
-int		Convert::toInt(float f)const{
-	if (f == std::numeric_limits<float>::infinity() || f == -std::numeric_limits<float>::infinity() || std::isnan(f))
+int		Convert::toInt(double f)const{
+	if (f == std::numeric_limits<float>::infinity() || f == -std::numeric_limits<float>::infinity() || std::isnan(f) )
 		throw std::string ("impossible");
 	return static_cast<int>(f);
 }

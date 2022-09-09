@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Convert.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dcyprien <dcyprien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 15:29:41 by dcyprien          #+#    #+#             */
-/*   Updated: 2022/08/19 18:34:31 by user42           ###   ########.fr       */
+/*   Updated: 2022/08/21 08:33:03 by dcyprien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ class Convert {
 		Convert & operator=(Convert const & rhs);
 
 		char toChar(float f)const;
-		int	toInt(float f)const;
+		int	toInt(double f)const;
 		double	toDouble(float f)const;
 		float	toFloat(float f)const;
 		bool	isPrintable(float f)const;
@@ -37,8 +37,8 @@ class Convert {
 		bool	isChar(char *av)const;
 		class Impossible: std::exception{
 			public:
-				virtual const char * what() throw(){
-				return ("Impossible Conversion");
+				virtual const char * what() const throw(){
+					return ("Impossible Conversion");
 			}
 		};
 };
