@@ -6,7 +6,7 @@
 #    By: dcyprien <dcyprien@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/18 19:51:49 by dcyprien          #+#    #+#              #
-#    Updated: 2022/06/16 15:43:33 by dcyprien         ###   ########.fr        #
+#    Updated: 2022/08/12 14:31:24 by dcyprien         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,9 @@ RM		=	rm -f
 $(NAME):	$(OBJS)
 	${CCXX} ${CXXFLAGS} -o ${NAME} ${OBJS}
 
+%.o: %.cpp
+	$(CCXX) $(CXXFLAGS) -c $< -o $@
+	
 all:		${NAME}
 
 clean:		
